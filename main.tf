@@ -25,7 +25,7 @@ resource "aws_instance" "blog" {
   vpc_security_group_ids = [aws_security_group.blog.id]
 
   tags = {
-    Name = "HelloWorld"
+    Name = "Learning Terraform"
   }
 }
 
@@ -34,7 +34,6 @@ resource "aws_security_group" "blog" {
   description = "Allow http and https in. Allow everything out"
   
   vpc_id      = data.aws_vpc.default.id
-
 }
 
 resource "aws_security_group_rule" "blog_http_in" {
@@ -45,7 +44,6 @@ resource "aws_security_group_rule" "blog_http_in" {
   cidr_block = ["0.0.0.0/0]
 
   security_group_id = aws_security_group.blog.id
-
 }
 
 resource "aws_security_group_rule" "blog_https_in" {
@@ -56,10 +54,9 @@ resource "aws_security_group_rule" "blog_https_in" {
   cidr_block = ["0.0.0.0/0]
 
   security_group_id = aws_security_group.blog.id
-
 }
 
-resource "aws_security_group_rule" "blog_https_out" {
+resource "aws_security_group_rule" "blog_everything_out" {
   type       = "egress"
   from_port  = 0
   to_port    = 0
@@ -67,5 +64,4 @@ resource "aws_security_group_rule" "blog_https_out" {
   cidr_block = ["0.0.0.0/0]
 
   security_group_id = aws_security_group.blog.id
-
 }
