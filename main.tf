@@ -76,8 +76,7 @@ target_groups = {
       targets = {
         target_id        = aws_instance.blog.id
         port = 80
-      }
-      
+      }      
     }
   }
 
