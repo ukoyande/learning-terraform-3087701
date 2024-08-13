@@ -36,7 +36,7 @@ module "blog_vpc" {
 
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "5.1.2"
+  version = "4.13.0"
   name    = "blog_new"
 
   vpc_id  = module.blog_vpc.vpc_id
@@ -71,7 +71,7 @@ module "alb" {
   
   vpc_id          = module.blog_vpc.vpc_id
   subnets         = module.blog_vpc.public_subnets
-  security_groups = module.blog_sg.security_group_id
+  security_groups = [module.blog_sg.security_group_id]
 
   http_tcp_listeners = [
     {
